@@ -2,20 +2,50 @@
 <html>
 	<head>
 		<title>Ilag Game</title>
+		
 		<style>
-			div {
+			body {
+				background-color: gray;
+			}
+			#canvas-container {
 				
 				display: flex;
 				justify-content: center;
+				align-items: center;
 				position: absolute;
-				height: 100vh;
-				width: 100vw;
+				max-height: 100vh;
+				width: 100vh;
+				flex-direction: column;
+			}
+			.container-manager {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 1em;
+				margin-top: 1em;
+			}
+			.input-button {
+				background-color: MediumSeaGreen;
+				text-decoration: none;
+				border: none;
+				border-radius: 10px;
+				width: 8em;
+				height: 4em;
+				cursor: pointer;
+				font-weight: bold;
+				color: white;
+			}
+			@media (min-width: 600px) {
 			}
 		</style>
 	</head>
 	<body>
-		<div>
+		<div id="canvas-container">
 			<canvas id="canvas"></canvas>
+			<div class="container-manager">
+				<button id="leftButton" class="input-button">LEFT</button>
+				<button id="rightButton" class="input-button">RIGHT</button>
+			</div>
 		</div>
 		<script src="code.js"></script>
 	</body>

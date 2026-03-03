@@ -4,6 +4,9 @@ const canvasWidth = canvas.width = 600;
 const canvasHeight = canvas.height = 600;
 const obstacles = [];
 
+const rightButton = document.getElementById("rightButton");
+const leftButton = document.getElementById("leftButton");
+
 let gameOver = false;
 let lastTime = 0;
 let spawnTimer = 0;
@@ -93,6 +96,22 @@ class Player {
 		this.speed = 1000;
 		this.img = new Image();
 		this.img.src = "player.webp";
+		
+		rightButton.addEventListener('touchstart', () => {
+			this.moveRight = true;
+		});
+
+		rightButton.addEventListener('touchend', () => {
+			this.moveRight = false;
+		});
+		
+		leftButton.addEventListener('touchstart', () => {
+			this.moveLeft = true;
+		});
+
+		leftButton.addEventListener('touchend', () => {
+			this.moveLeft = false;
+		});
 	}
 	
 	draw() {
@@ -102,11 +121,12 @@ class Player {
 	}
 	
 	move(input, deltaTime) {
-		if (input.indexOf('a') > -1) {
+		if (input.indexOf('a') > -1 || this.moveLeft) {
 			this.x += -this.speed * deltaTime;
-		} else if (input.indexOf('d') > -1) {
+		} else if (input.indexOf('d') > -1 || this.moveRight) {
 			this.x += this.speed * deltaTime;
 		}
+		
 	}
 	
 	border() {
@@ -145,6 +165,7 @@ class Player {
 		}
 	}
 	
+	
 	update(input, deltaTime) {
 		this.levelManager();
 		this.move(input, deltaTime);
@@ -153,6 +174,8 @@ class Player {
 	}
 	
 }
+
+
 
 function spawner(deltaTime) {
 	let spawnPerSecond = 2;
